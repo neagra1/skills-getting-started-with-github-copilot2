@@ -60,7 +60,7 @@
                 <h4>${activityName}</h4>
                 <p>${activityDetails.description}</p>
                 <p><strong>Schedule:</strong> ${activityDetails.schedule}</p>
-                <p><strong>Max Participants:</strong> ${activityDetails.max_participants}</p>
+                <p><strong>Availability:</strong> ${activityDetails.max_participants - activityDetails.participants.length} seats remaining</p>
                 <div class="participants">
                   <h5>Participants:</h5>
                   <ul>
