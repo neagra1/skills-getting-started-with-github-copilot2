@@ -62,7 +62,7 @@
                 <p><strong>Schedule:</strong> ${activityDetails.schedule}</p>
                 <p><strong>Availability:</strong> ${activityDetails.max_participants - activityDetails.participants.length} seats remaining</p>
                 <div class="participants">
-                  <h5>Participants:</h5>
+                  <p><strong>Participants:</strong></p>
                   <ul>
                     ${activityDetails.participants.map(participant => `<li>${participant}</li>`).join('')}
                   </ul>
