@@ -48,6 +48,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = document.getElementById("email").value;
     const activity = document.getElementById("activity").value;
 
+    // Check if the user is already registered for the selected activity
+    const selectedOption = Array.from(activitySelect.options).find(option => option.value === activity);
+    if (selectedOption && selectedOption.dataset.registered) {
+      messageDiv.textContent = "You are already registered for this activity.";
+      messageDiv.className = "error";
+      messageDiv.classList.remove("hidden");
+      setTimeout(() => {
+        messageDiv.classList.add("hidden");
+      }, 5000);
+      return;
+    }
+
     try {
       const response = await fetch(
         `/activities/${encodeURIComponent(activity)}/signup?email=${encodeURIComponent(email)}`,
@@ -62,6 +74,11 @@ document.addEventListener("DOMContentLoaded", () => {
         messageDiv.textContent = result.message;
         messageDiv.className = "success";
         signupForm.reset();
+
+        // Mark the activity as registered
+        if (selectedOption) {
+          selectedOption.dataset.registered = "true";
+        }
       } else {
         messageDiv.textContent = result.detail || "An error occurred";
         messageDiv.className = "error";
